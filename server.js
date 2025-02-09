@@ -1,3 +1,5 @@
+require("dotenv").config(); // Load environment variables from .env
+
 /* ******************************************
  * This server.js file is the primary file of the 
  * application. It is used to control the project.
@@ -11,7 +13,7 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
-const inventoryRoute = require("./routes/inventoryRoute") // Add this line
+const inventoryRoute = require("./routes/inventoryRoute")
 
 /* ***********************
  * View Engine and Templates
@@ -19,7 +21,6 @@ const inventoryRoute = require("./routes/inventoryRoute") // Add this line
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
-
 
 /* ***********************
  * Routes
@@ -29,18 +30,18 @@ app.use(static)
 app.get("/", baseController.buildHome)
 
 // Inventory routes
-app.use("/inv", inventoryRoute) // Add this line
+app.use("/inv", inventoryRoute)
 
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
  *************************/
-const port = process.env.PORT
-const host = process.env.HOST
+const port = process.env.PORT || 3000
+const host = process.env.HOST || '0.0.0.0'
 
 /* ***********************
  * Log statement to confirm server operation
  *************************/
-app.listen(port, () => {
+app.listen(port, host, () => {
   console.log(`app listening on ${host}:${port}`)
 })
