@@ -21,7 +21,7 @@ app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
 
-
+git commit -m "Added express and updated server.js for deployment"
 /* ***********************
  * Routes
  *************************/
